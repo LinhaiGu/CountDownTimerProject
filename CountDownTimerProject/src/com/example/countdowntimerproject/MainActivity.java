@@ -2,9 +2,11 @@ package com.example.countdowntimerproject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.countdowntimerproject.view.MainDownTimerView;
 import com.example.countdowntimerproject.view.SecondDownTimerView;
+import com.example.countdowntimerproject.view.base.OnCountDownTimerListener;
 
 public class MainActivity extends Activity {
 
@@ -17,6 +19,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initViews();
+		initEvent();
 		startDownTimer();
 	}
 
@@ -27,11 +30,27 @@ public class MainActivity extends Activity {
 		mSecondDownTimerView.setDownTime(50000000);
 	}
 
+	private void initEvent() {
+		mMainDownTimerView.setDownTimerListener(new OnCountDownTimerListener() {
+
+			@Override
+			public void onFinish() {
+				Toast.makeText(MainActivity.this, "倒计时结束", Toast.LENGTH_SHORT)
+						.show();
+			}
+		});
+		mSecondDownTimerView.setDownTimerListener(new OnCountDownTimerListener() {
+
+			@Override
+			public void onFinish() {
+				Toast.makeText(MainActivity.this, "倒计时结束", Toast.LENGTH_SHORT)
+						.show();
+			}
+		});
+	}
+
 	private void startDownTimer() {
 		mMainDownTimerView.startDownTimer();
 		mSecondDownTimerView.startDownTimer();
 	}
-	
-	
-	
 }

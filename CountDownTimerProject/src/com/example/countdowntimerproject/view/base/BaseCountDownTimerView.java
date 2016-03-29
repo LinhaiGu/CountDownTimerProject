@@ -16,6 +16,8 @@ public abstract class BaseCountDownTimerView extends LinearLayout {
 	 * 倒计时控制器
 	 */
 	private CountDownTimer mCountDownTimer;
+	
+	private OnCountDownTimerListener OnCountDownTimerListener;
 
 	private int mMillis;
 
@@ -100,24 +102,6 @@ public abstract class BaseCountDownTimerView extends LinearLayout {
 	}
 
 	/**
-	 * 创建倒计时
-	 */
-	private void createCountDownTimer() {
-		mCountDownTimer = new CountDownTimer(mMillis, 1000) {
-
-			@Override
-			public void onTick(long millisUntilFinished) {
-				setSecond(millisUntilFinished);// 设置秒
-			}
-
-			@Override
-			public void onFinish() {
-
-			}
-		};
-	}
-
-	/**
 	 * 添加标签到容器中
 	 */
 	private void addLabelView() {
@@ -154,6 +138,24 @@ public abstract class BaseCountDownTimerView extends LinearLayout {
 				.build();
 		return textView;
 	}
+	
+	/**
+	 * 创建倒计时
+	 */
+	private void createCountDownTimer() {
+		mCountDownTimer = new CountDownTimer(mMillis, 1000) {
+
+			@Override
+			public void onTick(long millisUntilFinished) {
+				setSecond(millisUntilFinished);// 设置秒
+			}
+
+			@Override
+			public void onFinish() {
+				OnCountDownTimerListener.onFinish();
+			}
+		};
+	}
 
 	/**
 	 * 设置秒
@@ -184,6 +186,14 @@ public abstract class BaseCountDownTimerView extends LinearLayout {
 		mSecondTextView.setText(second);
 	}
 
+	/**
+	 * 设置监听事件
+	 * @param listener
+	 */
+	public void setDownTimerListener(OnCountDownTimerListener listener){
+		this.OnCountDownTimerListener=listener;
+	}
+	
 	/**
 	 * 设置时间值
 	 * 
