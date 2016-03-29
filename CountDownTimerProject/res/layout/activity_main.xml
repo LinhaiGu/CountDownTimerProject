@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="dsfsdf"
+        android:textSize="20sp" />
+
+    <com.example.countdowntimerproject.view.MainDownTimerView
+        android:id="@+id/count_down_timer_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+    </com.example.countdowntimerproject.view.MainDownTimerView>
+
+    <com.example.countdowntimerproject.view.SecondDownTimerView
+        android:id="@+id/second_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/count_down_timer_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" >
+    </com.example.countdowntimerproject.view.SecondDownTimerView>
+
+</RelativeLayout>
